@@ -67,9 +67,13 @@ select idautor, nombre, apellido, anio_nacimiento from autores where anio_nacimi
 SELECT * FROM socios WHERE fecha_nac > '1998-01-01' AND fecha_nac < '1999-01-01';
 
 # Consultas para 2 o más tablas
-select titulo, anio_publicacion from libros inner join prestamos ON libros.idlibro = prestamos.idlibro;
+select titulo, anio_publicacion 
+from libros 
+inner join prestamos ON libros.idlibro = prestamos.idlibro;
 
-SELECT socios.idsocio, socios.nombre_socio, socios.apellido, rutinas.ejercicio, rutinas.peso_kg FROM socios INNER JOIN rutinas ON socios.idsocio = rutinas.idsocio;
+SELECT socios.idsocio, socios.nombre_socio, socios.apellido, rutinas.ejercicio, rutinas.peso_kg 
+FROM socios 
+INNER JOIN rutinas ON socios.idsocio = rutinas.idsocio;
 
 # si queremos agregar clausulas como nombres que empeicen con M.
 SELECT socios.idsocio, socios.nombre_socio, asistencias.actividad 
@@ -77,7 +81,15 @@ FROM socios
 INNER JOIN asistencias ON socios.idsocio = asistencias.idsocio 
 WHERE nombre_socio LIKE 'M%';
 
+# Union de 4 tablas
+SELECT a.apellido AS alumno, c.nombre AS curso, p.apellido AS profesor
+FROM inscripciones i
+INNER JOIN alumnos a ON i.id_alumno = a.id_alumno
+INNER JOIN cursos c ON i.id_curso = c.id_curso
+INNER JOIN profesores p ON c.id_profesor = p.id_profesor;
 
+# DISTINCT, se usa pra eliminar datos repetititvos
+SELECT DISTINCT idioma FROM cursos;
 
 
 
