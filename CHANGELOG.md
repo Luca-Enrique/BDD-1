@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.4.0] - 2026-09-28
+
+### docs
+
+- Creo `INDICE.md` con el catálogo completo de archivos del repositorio, organizado por carpeta (Consignas_ACTS, Scripts, Scripts/Actividad 1 a 5 y Models).
+- Aligero `README.md`: las tablas de estructura del repositorio y de modelos entidad-relación pasan al `INDICE.md` y quedan reemplazadas por un árbol de carpetas, un bloque de documentación inicial y la fecha de última actualización.
+
+## [1.3.0] - 2026-09-28
+
+### feat
+
+- Actividad 5 — base `sistema_proyectos` con `departamentos`, `empleados`, `proyectos` y `asignaciones` (Scripts/Actividad 5/sistema_proyectos.sql) + resolución de las 10 consignas de subconsultas (Scripts/Actividad 5/ACT5_Respuestas.sql).
+- Consigna ACT5_Consignas.md.
+- Subconsultas escalares, `IN`/`NOT IN`, `EXISTS`/`NOT EXISTS`, subconsulta correlacionada, subconsulta en la lista `SELECT`, tabla derivada en `FROM`, y `ALL`/`ANY` con su equivalencia a `MAX()`/`MIN()`.
+
+### fix
+
+- Actividad 4: la reescritura de la consigna 4c con `WHERE empleado_id IS NULL` estaba invertida (devolvía 0 filas); se reemplazó por una versión con `NOT EXISTS`.
+- Actividad 4: se completaron los incisos a) y b) de la consigna 4 sobre la trampa del `NULL` en `NOT IN`.
+
+### docs
+
+- Actualización del README.md con la Actividad 5 en la estructura, la guía de uso y los temas cubiertos.
+
 ## [1.2.0] - 2026-09-05
 
 ### feat
