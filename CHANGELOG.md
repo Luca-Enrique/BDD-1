@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.5.0] - 2026-11-03
+
+### feat
+
+- Actividad 6 — base `colegio_db` con `cursos`, `alumnos`, `notas` y `productos` (Scripts/Actividad_6/colegio_db.sql) + resolución de las consignas de funciones (Scripts/Actividad_6/ACT6_Respuestas.sql).
+- Funciones de texto (`CONCAT`, `UPPER`, `SUBSTRING`, `CHAR_LENGTH`, `LPAD`), numéricas (`ROUND`, `TRUNCATE`, `MOD`), de fecha (`DATE_FORMAT`, `DATE_ADD`, `TIMESTAMPDIFF`, `MONTH`) y de control de flujo (`IF`, `CASE`), más agregación con `GROUP BY` / `HAVING`.
+- Consigna ACT6_Consignas.md.
+
+### refactor
+
+- Scripts/SENTENCIAS.sql pasa de 9 a 10 secciones: se agrega la sección 10 con referencia rápida de funciones de texto, numéricas, de fecha, de control de flujo y de agregación.
+
+### fix
+
+- Actividad 6: se corrigen los `JOIN` de las consignas 5 y 8 (`n.alumno_id = a.id` y `n.curso_id = c.id`) y el reporte integrador agrupa por `a.id` y `c.id`.
+
+### docs
+
+- `INDICE.md`: sección nueva de la Actividad 6 y descripción de `SENTENCIAS.sql` actualizada a 10 secciones.
+- `README.md`: estructura, guía de uso y temas cubiertos actualizados con la Actividad 6.
+
 ## [1.4.0] - 2026-09-28
 
 ### docs

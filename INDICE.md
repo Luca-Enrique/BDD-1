@@ -13,10 +13,11 @@ Enunciados de las actividades, en el mismo orden en que se resuelven.
 - `ACT3_Consignas.md` → Trabajo práctico de `JOIN` sobre `veterinaria_joins` (9 tablas). 17 puntos repartidos en INNER, LEFT, RIGHT y una parte de integración que incluye la simulación de `FULL OUTER JOIN` con `UNION`.
 - `ACT4_Consignas.md` → 35 consignas sobre `tienda_tecnologia`: operadores con números y textos, consultas con fechas, `ORDER BY`, funciones de agregación, `GROUP BY` / `HAVING` y un ejercicio final con `JOIN` de cuatro tablas.
 - `ACT5_Consignas.md` → 10 actividades de subconsultas sobre `sistema_proyectos`: escalares en `WHERE`, `IN` / `NOT IN` y la trampa del `NULL`, `EXISTS` / `NOT EXISTS` con `EXPLAIN`, subconsulta correlacionada, subconsulta en la lista `SELECT`, tabla derivada en `FROM` y `ALL` / `ANY`.
+- `ACT6_Consignas.md` → 8 consignas de funciones sobre `colegio_db` (texto, numéricas, fechas y control de flujo) más un desafío integrador: `UPPER`, `CONCAT`, `SUBSTRING`, `CHAR_LENGTH`, `ROUND`, `TRUNCATE`, `IF`, `CASE`, `DATE_FORMAT`, `TIMESTAMPDIFF`, `DATE_ADD` y agregación con `GROUP BY` / `HAVING`.
 
 ## Scripts
 
-- `SENTENCIAS.sql` → Guía de sentencias SQL reorganizada en 9 secciones temáticas (DDL, `INSERT`, `UPDATE` / `DELETE`, `SELECT` por texto, por números, `ORDER BY`, por fechas, `JOIN` y `GROUP BY` / `HAVING`). Cada sección indica con un `USE` a qué base corresponde.
+- `SENTENCIAS.sql` → Guía de sentencias SQL organizada en 10 secciones temáticas (DDL, `INSERT`, `UPDATE` / `DELETE`, `SELECT` por texto, por números, `ORDER BY`, por fechas, `JOIN`, `GROUP BY` / `HAVING` y una referencia rápida de funciones de texto, numéricas, de fecha, de control de flujo y de agregación). Cada sección ejecutable indica con un `USE` a qué base corresponde.
 
 ## Scripts/Actividad 1 — Gimnasio
 
@@ -43,6 +44,11 @@ Enunciados de las actividades, en el mismo orden en que se resuelven.
 
 - `sistema_proyectos.sql` → Crea la base de datos `sistema_proyectos` con las tablas `departamentos`, `empleados`, `proyectos` y `asignaciones`. Los datos de prueba incluyen a propósito una asignación con `empleado_id` en `NULL`, que es la base de la consigna sobre la trampa de `NOT IN`.
 - `ACT5_Respuestas.sql` → Resolución comentada de las 10 actividades de subconsultas, con la explicación de qué devuelve cada subconsulta interna por sí sola.
+
+## Scripts/Actividad 6 — Colegio (funciones)
+
+- `colegio_db.sql` → Crea la base de datos `colegio_db` con las tablas `cursos`, `alumnos`, `notas` y `productos`. Incluye nombres con tildes y `ñ`, correos de distintos dominios y notas en `NULL` para ejercitar las funciones de texto y el impacto de `NULL` en `AVG` / `COUNT`.
+- `ACT6_Respuestas.sql` → Resolución de las 8 consignas de funciones (`UPPER`, `CONCAT`, `SUBSTRING` / `LOCATE`, `CHAR_LENGTH`, `ROUND`, `TRUNCATE`, `IF` / `CASE`, `DATE_FORMAT`, `DATE_ADD`, `TIMESTAMPDIFF`) y del desafío integrador con `RAND()` y un reporte de `alumnos` + `cursos` + `notas` con `GROUP BY` / `HAVING` y `LPAD(MONTH(...))`.
 
 ## Models
 
