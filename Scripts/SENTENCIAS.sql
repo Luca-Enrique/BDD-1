@@ -212,9 +212,8 @@ select distinct idioma from cursos;
 # ============================================================
 USE gimnasio;
 
-# Funciones de agregacion disponibles:
-# MAX(campo) -> maximo | MIN(campo) -> minimo | SUM(campo) -> suma
-# AVG(campo) -> promedio | COUNT(campo) -> cantidad
+# Funciones de agregación disponibles: COUNT, SUM, AVG, MIN y MAX.
+# La referencia completa de cada una está en la sección 10.5.
 
 # Cantidad de asistencias por socio (agrupar y contar)
 select idsocio, count(*) as cantidad_asistencias
@@ -227,3 +226,170 @@ select idsocio, count(*) as cantidad_asistencias
 from asistencias
 group by idsocio
 having count(*) >= 2;
+
+# ============================================================
+# 10. FUNCIONES (referencia rápida)
+# ============================================================
+# Las funciones van sin comentar para que se destaquen.
+# Las aclaraciones y los ejemplos (EJ) sí van comentados con #.
+
+# ------------------------------------------------------------
+# 10.1 FUNCIONES DE TEXTO
+# ------------------------------------------------------------
+
+CONCAT(a, b)  # une 2 o más valores en un solo texto
+#   EJ: CONCAT('Luca', ' ', 'Enrique')  ->  'Luca Enrique'
+#   (el ' ' del medio se usa como separador)
+
+CONCAT_WS(sep, a, b)  # igual que CONCAT, pero recibe el separador primero
+#   EJ: CONCAT_WS('-', 'A', 'B')  ->  'A-B'
+
+UPPER(t)  # pasa el texto a mayúsculas
+#   EJ: UPPER('enrique')  ->  'ENRIQUE'
+
+LOWER(t)  # pasa el texto a minúsculas
+#   EJ: LOWER('ENRIQUE')  ->  'enrique'
+
+LENGTH(t)  # largo del texto en BYTES (la ñ y los acentos ocupan 2)
+#   EJ: LENGTH('año')  ->  4
+
+CHAR_LENGTH(t)  # largo del texto en CARACTERES
+#   EJ: CHAR_LENGTH('año')  ->  3
+
+SUBSTRING(t, pos, n)  # extrae n caracteres desde la posición pos
+#   EJ: SUBSTRING('MySQL', 1, 2)  ->  'My'   (desde la 1 = 'M', 2 caracteres)
+
+LEFT(t, n)  # toma los primeros n caracteres
+#   EJ: LEFT('2026-09', 4)  ->  '2026'
+
+RIGHT(t, n)  # toma los últimos n caracteres
+#   EJ: RIGHT('2026-09', 2)  ->  '09'
+
+TRIM(t)  # saca los espacios en blanco de ambos lados
+#   EJ: TRIM(' hola ')  ->  'hola'
+#   Variantes: LTRIM(t) saca solo los de la izquierda y RTRIM(t) los de la derecha
+
+REPLACE(t, busca, nuevo)  # reemplaza todas las apariciones de "busca" por "nuevo"
+#   EJ: REPLACE('a-b-c', '-', '/')  ->  'a/b/c'
+
+LOCATE(busca, t)  # posición donde aparece "busca"; NULL si no está
+#   EJ: LOCATE('@', 'ana@x.com')  ->  4
+
+LPAD(t, n, relleno)  # rellena por la izquierda hasta llegar a n caracteres
+#   EJ: LPAD('7', 3, '0')  ->  '007'
+
+
+# ------------------------------------------------------------
+# 10.2 FUNCIONES NUMÉRICAS
+# ------------------------------------------------------------
+
+ROUND(n, d)  # redondea a d decimales; sin d, redondea a entero
+#   EJ: ROUND(7.456, 2)  ->  7.46
+
+TRUNCATE(n, d)  # recorta a d decimales sin redondear
+#   EJ: TRUNCATE(7.456, 2)  ->  7.45
+
+CEIL(n)  # redondea siempre hacia arriba
+#   EJ: CEIL(7.1)  ->  8
+
+FLOOR(n)  # redondea siempre hacia abajo
+#   EJ: FLOOR(7.9)  ->  7
+
+ABS(n)  # valor absoluto (sin signo)
+#   EJ: ABS(-5)  ->  5
+
+MOD(a, b)  # resto de la división entera
+#   EJ: MOD(10, 3)  ->  1
+
+POW(a, b)  # a elevado a b
+#   EJ: POW(2, 3)  ->  8
+
+SQRT(n)  # raíz cuadrada
+#   EJ: SQRT(16)  ->  4
+
+RAND()  # número decimal al azar entre 0 y 1
+#   EJ: RAND()  ->  0.7312...
+
+
+# ------------------------------------------------------------
+# 10.3 FUNCIONES DE FECHAS Y HORAS
+# ------------------------------------------------------------
+
+NOW()  # fecha y hora actuales
+#   EJ: NOW()  ->  '2026-09-15 10:30:00'
+
+CURDATE()  # solo la fecha actual
+#   EJ: CURDATE()  ->  '2026-09-15'
+
+CURTIME()  # solo la hora actual
+#   EJ: CURTIME()  ->  '10:30:00'
+
+YEAR(f) / MONTH(f) / DAY(f)  # extraen el año, el mes o el día de una fecha
+#   EJ: MONTH('2026-09-15')  ->  9
+
+DAYNAME(f)  # nombre del día (en inglés por defecto)
+#   EJ: DAYNAME('2026-09-15')  ->  'Tuesday'
+
+DATEDIFF(f1, f2)  # días de diferencia entre f1 y f2 (f1 - f2)
+#   EJ: DATEDIFF('2026-09-15', '2026-09-01')  ->  14
+
+TIMESTAMPDIFF(u, f1, f2)  # diferencia en la unidad u (YEAR, MONTH, DAY...)
+#   EJ: TIMESTAMPDIFF(YEAR, '2000-05-10', CURDATE())  ->  26
+
+DATE_ADD(f, INTERVAL n u)  # suma tiempo a una fecha (DATE_SUB resta)
+#   EJ: DATE_ADD('2026-09-15', INTERVAL 7 DAY)  ->  '2026-09-22'
+
+DATE_FORMAT(f, formato)  # muestra la fecha con el formato indicado
+#   EJ: DATE_FORMAT('2026-09-15', '%d/%m/%Y')  ->  '15/09/2026'
+
+# Códigos más usados en DATE_FORMAT:
+#   %d  Día (01-31)          %H  Hora (00-23)
+#   %m  Mes (01-12)          %i  Minutos (00-59)
+#   %Y  Año con 4 dígitos    %s  Segundos (00-59)
+#   %y  Año con 2 dígitos    %W  Nombre del día
+
+
+# ------------------------------------------------------------
+# 10.4 FUNCIONES DE CONTROL DE FLUJO
+# ------------------------------------------------------------
+
+IF(cond, v1, v2)  # si la condición es verdadera devuelve v1; si no, v2
+#   EJ: IF(8 >= 6, 'Sí', 'No')  ->  'Sí'
+
+IFNULL(v, alternativo)  # si v es NULL devuelve el alternativo; si no, v
+#   EJ: IFNULL(NULL, 'Sin dato')  ->  'Sin dato'
+
+COALESCE(a, b, c...)  # devuelve el primer valor que no sea NULL
+#   EJ: COALESCE(NULL, NULL, 'X')  ->  'X'
+
+NULLIF(a, b)  # devuelve NULL si a y b son iguales; si no, a
+#   EJ: NULLIF(5, 5)  ->  NULL
+
+CASE ... END  # evalúa condiciones en orden y devuelve el valor de la primera verdadera
+#   EJ: CASE WHEN nota >= 9 THEN 'Excelente'
+#            WHEN nota >= 6 THEN 'Aprobado'
+#            ELSE 'Desaprobado' END
+
+
+# ------------------------------------------------------------
+# 10.5 FUNCIONES DE AGREGACIÓN
+# ------------------------------------------------------------
+# Ver también la sección 9 (GROUP BY y HAVING).
+
+COUNT(*)  # cuenta todas las filas, incluidas las que tienen NULL
+#   EJ: COUNT(*)  ->  30
+
+COUNT(columna)  # cuenta solo las filas donde esa columna NO es NULL
+#   EJ: COUNT(telefono)  ->  25
+
+COUNT(DISTINCT col)  # cuenta valores distintos
+#   EJ: COUNT(DISTINCT curso)  ->  3
+
+SUM(col)  # suma los valores
+#   EJ: SUM(importe)  ->  15400
+
+AVG(col)  # promedio de los valores (ignora NULL)
+#   EJ: AVG(nota)  ->  7.25
+
+MAX(col) / MIN(col)  # valor máximo / mínimo (también funcionan con texto y fechas)
+#   EJ: MAX(nota)  ->  10
